@@ -1,0 +1,14 @@
+#include<iostream>
+
+void upper()
+{
+	for(int i=65;i<=70;i++)
+	{
+		std::cout<<i<<""<<std::endl;
+	}
+}
+int main()
+{
+	upper();
+	return 0;
+}
