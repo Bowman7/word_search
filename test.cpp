@@ -1,5 +1,6 @@
 #include<iostream>
 #include<random>
+#include<vector>
 void printRef(int refAr[],int size)
 {
 	int count;
@@ -16,14 +17,12 @@ void printRef(int refAr[],int size)
 }
 void refAdd(int refAr[],int size)
 {
-	int val=0;
 	std::random_device rd;
 	std::mt19937 gen(rd());
 	std::uniform_int_distribution dis(0,size-1);
-	for(int i=0;i<size;i++)
+        for(int i=0;i<size;i++)
 	{
 		refAr[i]=dis(gen);
-		
 	}
 }
 void printAlp(int refAr[],char  baseCh[],int range)
@@ -41,13 +40,69 @@ void printAlp(int refAr[],char  baseCh[],int range)
 		}
 	}
 }
+void missingNo(int refAr[],int range,int misAr[])
+{
+	int count=0;int p=0;
+	
+	for(int i=0;i<range;i++)
+	{
+		for(int j=0;j<range;j++)
+		{
+			if(i==refAr[j])
+			{
+				count++;
+			}
+			
+		}
+		if(count==0)
+			{
+				misAr[p]=i;
+				p++;
+			}
+		count=0;
+	}
+}
+void printMiss(std::vector<int> &misNo, int mSize)
+{
+	for(int i=0;i<mSize;i++)
+	{
+		std::cout<<misNo[i];
+	}
+}
+void missingNoVec(int refAr[],int range, std::vector<int> &misNo ,int *mSize)
+{
+	int count=0;int val=0;
+        for(int i=0;i<range;i++)
+	{
+		for(int j=0;j<10;j++)
+		{
+			if(i==refAr[j])
+			{
+				count++;
+			}
+		}
+		if(count==0)
+		{
+			std::cout<<i<<std::endl;
+			misNo.push_back(i);
+			val++;
+		}
+		count=0;
+	}
+	*mSize=val;
+}
 int main()
 {
+	int misAr[10];int mSize=0;
+	std::vector<int> misNo;
 	char baseCh[9]={'a','b','c','d','e','f','g','h','i'};
 	int baseAr[9]={0,1,2,3,4,5,6,7,8};
-	int refAr[9];
+	int refAr[4];
 	refAdd(refAr,9);
-	//printRef(refAr,9);
-	printAlp(refAr,baseCh,9);
+	printRef(refAr,9);
+	missingNoVec(refAr,9,misNo,&mSize);
+	printMiss(misNo,mSize);
+	
+	//printAlp(refAr,baseCh,9);
 	return 0;
 }
