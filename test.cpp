@@ -3,7 +3,7 @@
 #include<vector>
 void printRef(int refAr[],int size)
 {
-	int count;
+	int count=0;
 	for(int i=0;i<size;i++)
 	{
 		std::cout<<" "<<refAr[i]<<" ";
@@ -142,6 +142,17 @@ void printRepeat(std::vector<int> &repeatingPos,int refAr[],int rSize)
 		std::cout<<refAr[pos]<<" ";
 	}
 }
+void replaceRepeat(std::vector<int> &repeatingPos,int refAr[],int rSize,std::vector<int> &misNo)
+{
+	int val,pal;
+	for(int i=0;i<rSize;i++)
+	{
+		pal=repeatingPos[i];
+		val=misNo[i];
+		refAr[pal]=val;
+	}
+	std::cout<<std::endl;
+}
 int main()
 {
 	int misAr[10];int mSize=0;int rSize;
@@ -156,6 +167,8 @@ int main()
 	printMiss(misNo,mSize);
         getRepeating(refAr,9,repeatingPos,&rSize);
 	printRepeat(repeatingPos,refAr,rSize);
+	replaceRepeat(repeatingPos,refAr,rSize,misNo);
+	printRef(refAr,9);
 	
 	//printAlp(refAr,baseCh,9);
 	return 0;
