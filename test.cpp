@@ -169,6 +169,7 @@ int main()
 	printRepeat(repeatingPos,refAr,rSize);
 	replaceRepeat(repeatingPos,refAr,rSize,misNo);
 	printRef(refAr,9);
+	printAlp(refAr,baseCh,9);
 	
 	//printAlp(refAr,baseCh,9);
 	return 0;

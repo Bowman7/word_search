@@ -1,0 +1,18 @@
+#include"word.h"
+int main()
+{
+	word wor;
+	sf::RenderWindow mWindow(sf::VideoMode(1000,1000),"curelwindow");
+	while(mWindow.isOpen())
+	{
+		sf::Event event;
+		switch(event.type)
+		{
+		case sf::Event::Closed:
+			mWindow.close();break;
+		}
+		wor.run(mWindow);
+		
+	}
+	return 0;
+}
