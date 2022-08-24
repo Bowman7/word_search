@@ -1,4 +1,5 @@
 #include<SFML/Graphics.hpp>
+#include"rand.h"
 class word
 {
 public:
@@ -60,6 +61,8 @@ void word::render()
 }
 int main()
 {
+	int refAr[9];
+	run(refAr,9);
 	word world;
 	world.run();
 	return 0;

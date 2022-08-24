@@ -1,6 +1,4 @@
-#include<iostream>
-#include<random>
-#include<vector>
+#include"rand.h"
 void printRef(int refAr[],int size)
 {
 	int count=0;
@@ -153,24 +151,24 @@ void replaceRepeat(std::vector<int> &repeatingPos,int refAr[],int rSize,std::vec
 	}
 	std::cout<<std::endl;
 }
-int main()
+void run(int refAr[],int size)
 {
 	int misAr[10];int mSize=0;int rSize;
 	std::vector<int> misNo;
 	std::vector<int> repeatingPos;
-	char baseCh[9]={'a','b','c','d','e','f','g','h','i'};
-	int baseAr[9]={0,1,2,3,4,5,6,7,8};
-	int refAr[9];
-	refAdd(refAr,9);
-	printRef(refAr,9);
-	missingNoVec(refAr,9,misNo,&mSize);
+	char baseCh[size]={'a','b','c','d','e','f','g','h','i'};
+	int baseAr[size]={0,1,2,3,4,5,6,7,8};
+	//int refAr[size];
+	refAdd(refAr,size);
+	printRef(refAr,size);
+	missingNoVec(refAr,size,misNo,&mSize);
 	printMiss(misNo,mSize);
-        getRepeating(refAr,9,repeatingPos,&rSize);
+        getRepeating(refAr,size,repeatingPos,&rSize);
 	printRepeat(repeatingPos,refAr,rSize);
 	replaceRepeat(repeatingPos,refAr,rSize,misNo);
-	printRef(refAr,9);
-	printAlp(refAr,baseCh,9);
+	printRef(refAr,size);
+	printAlp(refAr,baseCh,size);
 	
 	//printAlp(refAr,baseCh,9);
-	return 0;
+//	return 0;
 }
