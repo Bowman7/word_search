@@ -149,7 +149,6 @@ void replaceRepeat(std::vector<int> &repeatingPos,int refAr[],int rSize,std::vec
 		val=misNo[i];
 		refAr[pal]=val;
 	}
-	std::cout<<std::endl;
 }
 void run(int refAr[],int size)
 {
@@ -166,9 +165,49 @@ void run(int refAr[],int size)
         getRepeating(refAr,size,repeatingPos,&rSize);
 	printRepeat(repeatingPos,refAr,rSize);
 	replaceRepeat(repeatingPos,refAr,rSize,misNo);
+	setWord(refAr);
 	printRef(refAr,size);
 	printAlp(refAr,baseCh,size);
-	
+	//refAr[0]=1;refAr[4]=0;refAr[8]=3
 	//printAlp(refAr,baseCh,9);
 //	return 0;
+}
+void setWord(int refAr[])
+{
+	int val;
+	std::random_device rd;
+	std::mt19937 gen(rd());
+	std::uniform_int_distribution dis(0,9);
+	val=dis(gen);
+	std::cout<<"gen no: "<<val<<std::endl;
+	switch(val)
+	{
+	case 0:
+		refAr[0]=1;refAr[1]=0;refAr[2]=3;break;
+	case 1:
+		refAr[0]=1;refAr[4]=0;refAr[8]=6;break;
+	case 2:
+		refAr[0]=3;refAr[3]=0;refAr[6]=1;break;
+	case 3:
+		refAr[5]=2;refAr[4]=0;refAr[3]=1;break;
+	case 4:
+		refAr[6]=4;refAr[7]=6;refAr[8]=6;break;
+	case 5:
+		refAr[6]=5;refAr[4]=8;refAr[2]=6;break;
+	case 6:
+		refAr[8]=5;refAr[4]=0;refAr[0]=3;break;
+	case 7:
+		refAr[3]=5;refAr[4]=4;refAr[5]=3;break;
+	case 8:
+		refAr[1]=1;refAr[4]=8;refAr[7]=6;break;
+	case 9:
+		refAr[8]=7;refAr[7]=0;refAr[6]=3;break;
+	}
+}
+void switchAr(int realAr[],int refAr[])
+{
+	for(int i=0;i<9;i++)
+	{
+		realAr[i]=refAr[i];
+	}
 }

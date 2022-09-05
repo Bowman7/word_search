@@ -14,6 +14,6 @@ void missingNoVec(int refAr[],int range, std::vector<int> &misNo ,int *mSize);
 void getRepeating(int refAr[],int size,std::vector<int> &repeatingPos,int *rSize);
 void replaceRepeat(std::vector<int> &repeatingPos,int refAr[],int rSize,std::vector<int> &misNo);
 void run(int [],int size);
-void setWord(int *);
+void setWord(int[]);
 void switchAr(int [],int []);
 #endif
