@@ -1,5 +1,6 @@
 #include<SFML/Graphics.hpp>
 #include"rand.h"
+#include<vector>
 class word
 {
 public:
@@ -17,14 +18,20 @@ private:
 private:
 	sf::RenderWindow mWindow;
 	sf::Texture mTexture;
+	sf::Texture selTexture;
 	sf::Sprite mSprite[9];
 	sf::Sprite trueSprite[9];
+	sf::Sprite selectSprite[9];
+	sf::Sprite refSelSprite[3];
+private:
+	float mouseX,mouseY;
    
 };
 word::word(int psourceRandAr[],int psourceRandRange)
 	:mWindow(sf::VideoMode(900,900),"cruel world "),mTexture(),mSprite()
 {
 	mTexture.loadFromFile("/home/batu/repos/word_search/src/word.png");
+	selTexture.loadFromFile("/home/batu/repos/word_search/src/wordselect.png");
 	sourceRandRange=psourceRandRange;
 	std::cout<<"sourceranfAr:"<<std::endl;
 	for(int i=0;i<sourceRandRange;i++)
@@ -35,6 +42,7 @@ word::word(int psourceRandAr[],int psourceRandRange)
 	for(int k=0;k<9;k++)
 	{
 		mSprite[k].setTexture(mTexture);
+		selectSprite[k].setTexture(selTexture);
 	}
 	assignPos(sourceRandAr,mSprite,9,trueSprite);
 	
@@ -66,11 +74,99 @@ void word::processEvents()
 		{
 		case sf::Event::Closed:
 			mWindow.close();break;
+		case sf::Event::MouseMoved:
+			//	int mousex,mousey;
+			mouseX=sf::Mouse::getPosition(mWindow).x;
+			mouseY=sf::Mouse::getPosition(mWindow).y;
+			std::cout<<"x pos:"<<mouseX<<"ypos:"<<mouseY<<std::endl;
+			
 		}
 	}
 }
 void word::update()
 {
+	int refValcount=0;
+	if(sf::Mouse::isButtonPressed(sf::Mouse::Left))
+	{
+		while(refValcount!=3)
+		{
+			if(mouseX<300 && mouseY<300)
+			{
+				sf::IntRect s1(0.f,0.f,300,300);
+				selectSprite[0].setTextureRect(s1);
+				selectSprite[0].setPosition(0.f,0.f);
+				refSelSprite[refValcount]=selectSprite[0];
+				refValcount++;
+			}
+			if(mouseX>300 && mouseX<600 && mouseY<300)
+			{
+				sf::IntRect s2(300.f,0.f,300,300);
+				selectSprite[1].setTextureRect(s2);
+				selectSprite[1].setPosition(300.f,0.f);
+				refSelSprite[refValcount]=selectSprite[1];
+				refValcount++;
+			}
+			if(mouseX>600 && mouseX<900 && mouseY<300)
+			{
+				sf::IntRect s3(600.f,0.f,300,300);
+				selectSprite[2].setTextureRect(s3);
+				selectSprite[2].setPosition(600.f,0.f);
+				refSelSprite[refValcount]=selectSprite[2];
+				refValcount++;
+			}
+			if(mouseX<300 && mouseY>300 && mouseY<600)
+			{
+				sf::IntRect s4(0.f,300.f,300,300);
+				selectSprite[3].setTextureRect(s4);
+				selectSprite[3].setPosition(0.f,300.f);
+				refSelSprite[refValcount]=selectSprite[3];
+				refValcount++;
+			}
+			if(mouseX>300 && mouseX<600 && mouseY>300 && mouseY<600)
+			{
+				sf::IntRect s5(300.f,300.f,300,300);
+				selectSprite[4].setTextureRect(s5);
+				selectSprite[4].setPosition(300.f,300.f);
+				refSelSprite[refValcount]=selectSprite[4];
+				refValcount++;
+			}
+			if(mouseX>600 && mouseX<900 && mouseY>300 && mouseY<600)
+			{
+				sf::IntRect s6(600.f,300.f,300,300);
+				selectSprite[5].setTextureRect(s6);
+				selectSprite[5].setPosition(600.f,300.f);
+				refSelSprite[refValcount]=selectSprite[5];
+				refValcount++;
+			}
+			if(mouseX<300 && mouseY>600 && mouseY<900)
+			{
+				sf::IntRect s7(0.f,600.f,300,300);
+				selectSprite[6].setTextureRect(s7);
+				selectSprite[6].setPosition(0.f,600.f);
+				refSelSprite[refValcount]=selectSprite[6];
+				refValcount++;
+			}
+			if(mouseX>300 && mouseX<600 && mouseY>600 && mouseY<900)
+			{
+				sf::IntRect s8(300.f,600.f,300,300);
+				selectSprite[7].setTextureRect(s8);
+				selectSprite[7].setPosition(300.f,600.f);
+				refSelSprite[refValcount]=selectSprite[7];
+				refValcount++;
+			}
+			if(mouseX>600 && mouseX<900 && mouseY>600 && mouseY<900)
+			{
+				sf::IntRect s9(600.f,600.f,300,300);
+				selectSprite[8].setTextureRect(s9);
+				selectSprite[8].setPosition(600.f,600.f);
+				refSelSprite[refValcount]=selectSprite[8];
+				refValcount++;
+			}
+			
+
+		}
+	}
+	
 	
 }
 void word::render()
@@ -80,6 +176,9 @@ void word::render()
 	{
 		mWindow.draw(trueSprite[i]);
 	}
+	mWindow.draw(refSelSprite[0]);
+	mWindow.draw(refSelSprite[1]);
+	mWindow.draw(refSelSprite[2]);
 	mWindow.display();
 	
 }
